@@ -1,7 +1,7 @@
 module.exports = {
   base: '/vuepress-blog/',
   title: 'Javascript 基础补完计划',
-  description: 'Javascript基础知识',
+  description: 'Javascript 基础知识',
   theme: 'reco',
   locales: {
     '/': {
