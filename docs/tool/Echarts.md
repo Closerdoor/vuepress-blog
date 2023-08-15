@@ -160,4 +160,6 @@ window.onresize = function () {
     obj[key].resize();
   }
 };
+// 使用resizeObserver,监听父容器尺寸变化， 然后调用echarts的resize
+// 直接resize有坑，如果容器是隐藏状态，它会报错然后就不渲染了
 ```
