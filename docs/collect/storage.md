@@ -10,6 +10,23 @@ date: '2021-12-12'
 
 当浏览器从服务器上请求 web 页面时， 属于该页面的 cookie 会被添加到该请求中。服务端通过这种方式来获取用户的信息。
 
+### **属性：**
+
+基于安全的考虑，需要给cookie加上Secure和HtpOnly属性，HttpOnly比较好理解，设置HttpOnly=true的cookie不能被js获取到，无法用
+document.cookie打出cookie的内容。
+Secure属性是说如果一个cookie被设置了Secure=true,那么这个cookie只能用https协议发送给服务器，用http协议是7下发送的。换句话
+说，cookie是在https的情况下创建的，而且他的Secure=true，那么之后你一直用https访问其他的页面(比如登录之后点击其他子页面）
+Cookie会被发送到服务器，你无需重新登录就可以跳转到其他页面。但是如果这是你把u改成http协议访问其他页面，你就需要重新登录
+了，因为这个cookie不能在http协议中发送，
+例子是:
+前提条件：https:/localhost.9102应用对cookie设置了Secure=true
+1. 访问 https://localhost9102/manager
+2. 输入用户名、密码，用IE或者Chrome的developer tool会看到response的header里， set-cookie的值里有Secure属性
+3. 登录后，继续访问https:/llocalhost9102/manager#user,可以正常看到内容
+4. 修改url, 访问http://localhost.9100/manager#domain,会跳转到登录页面，因为cookie在http协议下不发送给服务器，服务器要求用户重新登录
+
+设置了Secure为true后，发现https协议能通过js获取到cookie，http协议无法获取
+
 ### **特点:**
 
 * 可以设置过期时间
