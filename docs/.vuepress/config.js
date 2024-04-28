@@ -60,6 +60,10 @@ module.exports = {
             text: "移动端开发",
             link: "/note/webapp/page"
           },
+          {
+            text: "webpack",
+            link: "/note/webpack/index"
+          },
         ]
       },
       {
